@@ -1,0 +1,32 @@
+# macOS and local editor state
+.DS_Store
+.idea/
+.vscode/
+.codex/
+
+# Xcode user state and build output
+**/xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.xcarchive
+*.ipa
+*.dSYM/
+*.dSYM.zip
+
+# Swift Package Manager local output
+.build/
+.swiftpm/
+
+# Local credentials and signing material
+.env
+.env.*
+!.env.example
+*.p12
+*.p8
+*.key
+*.pem
+*.mobileprovision
+
+# Temporary logs
+*.log

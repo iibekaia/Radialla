@@ -1,0 +1,253 @@
+id,latitude,longitude,name,type,maxspeed,unit,country_code,source
+220729275,41.849212,44.731908,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+220734883,41.842354,44.730435,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+220752256,41.8271,44.73591,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+220993269,41.751946,44.777779,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+221144118,41.785753,44.799964,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+221473700,41.659878,44.888656,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+279301128,41.678556,44.828312,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+279333112,41.785584,44.800048,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+280061723,41.74072,44.771733,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+287831094,41.752054,44.777683,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+288608896,41.893003,44.715023,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+288609488,42.038458,43.515197,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+288610083,42.103558,43.240162,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+312947830,41.747996,44.771773,Average speed camera 70 km/h,average,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+313454739,42.076537,41.911108,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+313454779,42.06323,41.871674,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+444738603,41.558703,44.968048,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+444749474,41.572575,44.971895,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+444802657,41.549929,44.993157,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+715336653,41.670896,44.87134,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+771201267,41.740707,44.759897,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+778955315,41.687565,44.897723,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+790334036,41.730579,44.774947,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+852419242,41.826867,44.735157,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+877625195,41.755272,44.775595,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+919358548,41.713692,44.768694,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+921378584,41.614337,44.790131,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+928838762,41.713599,44.768593,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1059341045,41.891042,44.716812,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1080186496,41.689442,41.715349,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1164442192,42.235681,42.712209,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1169963400,41.895753,45.826073,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1169966146,41.863406,45.815474,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1172131604,41.923455,45.40426,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1172236345,41.862333,45.631824,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1172312093,41.937946,45.51004,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1172336474,41.957428,45.525034,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1174193231,41.806601,45.738665,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1174659094,41.691574,45.861177,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1176868051,42.028202,43.535193,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1176870404,42.028745,43.546217,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1177965379,41.999813,43.658806,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1178094246,42.03963,43.814759,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1184282542,42.024152,44.223587,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1185666905,41.839697,43.387206,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1202894052,42.614281,44.594811,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1203110648,42.344489,44.694506,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1203113623,42.362663,44.684041,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1203234590,42.008262,44.752692,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1203249816,41.979301,44.749,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1276866404,41.882979,41.774773,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1304540599,41.786291,41.766164,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1330799579,41.683886,41.700401,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1398437080,41.686991,44.855753,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1472419971,42.009989,44.047278,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1472419999,42.010256,44.04692,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1472420030,42.013078,44.055317,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1472420032,42.013397,44.055049,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1612189959,41.79877,44.799408,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+1847906782,41.572497,44.971839,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+2083053552,41.688072,44.818838,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+2121617343,43.316109,40.246887,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+2250245514,42.186031,42.728047,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+2379653461,41.806003,44.771659,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+2502667016,41.591132,41.645787,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3008219551,41.973519,43.548376,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3650615148,42.184905,42.692904,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3680263143,41.711608,44.864713,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3688981741,41.846958,44.731601,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3688981743,41.893989,44.662106,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3688981744,41.902481,44.581503,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3696546192,41.335731,44.808192,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3702906257,41.807252,44.771081,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3702929627,41.907668,44.572691,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3708933317,41.984285,43.588566,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3711579203,42.087367,42.140042,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3711582873,42.042752,41.734986,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3711597389,42.077574,42.086289,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3711605881,41.599228,41.603398,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+3918292675,41.695778,45.094638,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4143979294,41.546213,45.003242,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4189663422,41.569834,44.964315,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4254263064,41.567992,44.961936,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4254263073,41.567894,44.961787,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4254281769,41.588401,44.948211,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4386786989,41.756163,44.809417,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4407175818,41.686826,44.855731,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4713355485,41.677487,44.829158,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+4745483535,41.777004,44.789596,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5568663465,42.186803,42.640815,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877954713,41.890442,44.717129,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877954714,41.846718,44.731711,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877954715,41.8941,44.662687,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877954716,41.904044,44.579059,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877954717,41.904501,44.577862,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877961787,41.9659,44.465451,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877961788,41.965588,44.466863,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877961789,41.988433,44.420437,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877961790,41.989199,44.419635,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877968299,42.023455,44.248459,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877968300,42.023316,44.247135,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877968301,42.017425,44.145006,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5877968302,42.017724,44.145396,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+5924690286,41.891249,44.716809,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6129200087,41.898554,45.571578,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6193776836,41.849212,44.731748,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6277102163,41.919726,45.501419,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6277102164,41.916939,45.534167,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6283966273,41.919818,45.501392,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307859022,41.687764,44.898012,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307906777,41.699117,44.85234,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307906853,41.696352,44.855537,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307909653,41.701443,44.850764,Speed camera 30 km/h,fixed,30,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307913341,41.703758,44.849562,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307917048,41.705784,44.852885,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307919621,41.707958,44.857339,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307920378,41.715322,44.872579,Speed camera 55 km/h,fixed,55,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934044,41.714848,44.871255,Speed camera 55 km/h,fixed,55,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934045,41.713109,44.867839,Speed camera 45 km/h,fixed,45,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934046,41.710909,44.863269,Speed camera 35 km/h,fixed,35,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934048,41.709287,44.859893,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934049,41.707366,44.855763,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934050,41.704596,44.849721,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934051,41.703761,44.849454,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934053,41.699123,44.852267,Speed camera 30 km/h,fixed,30,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934054,41.696583,44.853645,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6307934055,41.695589,44.857137,Speed camera 75 km/h,fixed,75,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404042,41.69048,44.85288,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404043,41.688094,44.849927,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404044,41.68972,44.8427,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404045,41.691601,44.834529,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404047,41.691455,44.831331,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404048,41.6921,44.821904,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312404049,41.693643,44.811286,Speed camera 30 km/h,fixed,30,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312409520,41.693084,44.854811,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6312409521,41.693116,44.854787,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6335135927,41.92581,45.453259,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6335440710,41.570105,44.964676,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6355371421,41.656025,44.898493,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579735849,41.839618,41.778265,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579740199,41.841368,41.77848,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788487,42.160904,42.381718,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788488,42.162709,42.460077,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788489,42.171311,42.583704,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788490,42.171355,42.593927,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788491,42.183552,42.633198,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788492,42.187354,42.675521,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788493,42.187793,42.737992,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6579788494,42.210827,42.814297,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6581304152,42.252185,42.655937,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6602323086,42.658494,44.640926,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6602323087,42.650309,44.641188,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6602323088,42.620831,44.603575,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6605059313,42.625762,44.612339,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6605059315,42.602309,44.57677,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6605059316,42.606484,44.583613,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6616213604,41.895375,44.719022,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6616213605,41.919587,44.727977,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6616213606,42.032931,44.746035,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6616213607,41.946603,44.740371,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6640365377,41.779768,45.772051,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6816836441,41.588644,44.948442,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6895611576,42.555041,44.498589,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+6895611577,41.99274,44.751588,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7062899978,41.990942,45.584906,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565946316,42.37102,41.82016,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565946317,42.361702,41.834855,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565946318,42.325585,41.886559,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565970953,42.321732,41.892587,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565970954,42.222559,41.79699,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565970955,42.185958,41.70546,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565970956,42.171932,41.677457,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7565970957,42.157412,41.685339,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7895109551,41.816391,44.854871,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7895109552,41.749052,45.012544,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7973934152,41.92779,45.417485,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7973934153,41.925204,45.410037,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7973934155,41.928938,45.428073,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7973934156,41.92362,45.4366,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+7973934157,41.921587,45.443212,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+8325261151,41.919947,45.516371,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+8325280817,41.898801,45.571122,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+8481732582,41.719952,45.176893,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+8481732583,41.713176,45.15843,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+8752185652,41.970338,45.558076,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9116112796,41.750226,45.815954,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9279192372,41.638388,43.001421,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9599183031,41.71307,45.157997,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9643008729,41.702722,45.870872,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9643008730,41.751903,45.81371,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9852615851,41.672764,44.883405,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9852615852,41.672866,44.883736,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9852615853,41.679879,44.871302,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+9852615854,41.679711,44.87117,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+10179038077,41.646298,41.649254,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+10292821888,42.039378,41.778145,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+10292821889,42.039281,41.77823,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+10648644059,41.572104,41.571906,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+10650781202,41.572332,41.571926,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+10982425233,41.834173,41.777446,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+11305261909,41.625182,42.178619,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+11549345522,41.546135,45.003184,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+11916893969,42.106184,43.052125,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+11948016559,41.54984,44.993136,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+12165160543,41.87237,44.727386,Speed camera 60 km/h,fixed,60,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+12251144057,41.63504,41.683097,Speed camera 90 km/h,fixed,90,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+12542362232,41.707055,44.855451,Speed camera 20 km/h,fixed,20,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+12810151067,41.735413,44.838903,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13899236702,42.2738,42.64627,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13899236703,42.282635,42.617812,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13899236704,42.301112,42.595897,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13899242901,42.266673,42.691982,Speed camera 50 km/h,fixed,50,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13899242902,42.283243,42.616152,Speed camera 70 km/h,fixed,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13899243001,42.33239,42.599677,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910515687,42.128808,43.007265,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910533302,42.031743,43.78738,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572301,42.011153,43.707435,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572302,42.01371,43.691999,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572303,42.099366,43.392908,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572304,42.127431,43.016578,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572401,42.028416,43.568503,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572402,42.116096,43.047889,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572403,42.137353,42.981603,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572501,42.042129,43.537969,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572502,42.157702,42.952221,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572601,42.110833,43.296355,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572602,42.102026,43.069045,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572603,42.306218,42.594721,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572701,42.107221,43.260096,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572702,42.099297,43.073852,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572703,42.141921,42.972107,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910572704,42.271078,42.669827,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13910597473,42.162101,42.945036,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13914922701,43.042235,42.716971,Speed camera 40 km/h,fixed,40,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13927250512,42.656242,42.77186,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986501,42.092391,43.096495,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986502,42.027811,43.569569,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986503,42.031631,43.787416,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986504,41.832526,44.731955,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986601,42.104101,43.21132,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986602,42.017965,44.099337,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986701,42.108315,43.270982,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986801,42.110696,43.296364,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986802,42.105959,43.352522,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986901,42.108287,43.304326,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945986902,42.013586,43.691953,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945987001,42.011024,43.707474,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945987101,42.019818,44.009313,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13945987102,42.018066,44.130498,Speed camera 110 km/h,fixed,110,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13948380701,42.101258,43.070714,Speed camera 80 km/h,fixed,80,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+13948380702,42.099228,43.073708,Speed camera,fixed,,,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
+14169002477,41.731474,44.774415,Average speed camera 70 km/h,average,70,kmh,GE,© OpenStreetMap contributors (ODbL 1.0) via speedcams.world
