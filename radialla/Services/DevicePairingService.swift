@@ -6,8 +6,6 @@ final class DevicePairingService: ObservableObject {
     @Published private(set) var connected = false
     @Published private(set) var paired = false
     @Published private(set) var members = 0
-    @Published private(set) var code = ""
-    @Published private(set) var codeExpiresAt: Date?
     @Published private(set) var busy = false
     @Published private(set) var messageKey = ""
     var onRemotePause: (() -> Void)?
@@ -19,8 +17,6 @@ final class DevicePairingService: ObservableObject {
     }
     private struct Reply: Decodable {
         let token: String?
-        let code: String?
-        let expiresAt: Double?
         let state: State?
     }
     private enum Failure: Error { case expired, unavailable }
@@ -60,8 +56,7 @@ final class DevicePairingService: ObservableObject {
         claimed = false
     }
 
-    func createCode() async { await connect(action: token == nil ? "create" : "code", body: [:]) }
-    func join(_ code: String) async {
+    private func join(_ code: String) async {
         guard token == nil else { return }
         await connect(action: "join", body: ["code": code])
     }
@@ -92,8 +87,6 @@ final class DevicePairingService: ObservableObject {
                 revision = -1
                 claimed = false
             }
-            if let code = reply.code { self.code = code }
-            if let expiry = reply.expiresAt { codeExpiresAt = Date(timeIntervalSince1970: expiry / 1000) }
             // A currently playing joining device claims after the successful stream start.
             if localPlaying { claiming = true }
             if let state = reply.state { apply(state) }
@@ -189,8 +182,6 @@ final class DevicePairingService: ObservableObject {
         connected = false
         claimed = false
         claiming = false
-        code = ""
-        codeExpiresAt = nil
         members = 0
         revision = -1
         owner = nil

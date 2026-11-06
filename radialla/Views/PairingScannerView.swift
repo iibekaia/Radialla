@@ -2,7 +2,6 @@ import SwiftUI
 
 struct PairingScannerView: View {
     @Localized private var localized
-    @Environment(\.dismiss) private var dismiss
     @State private var ready = false
     @State private var unavailable = false
     let onResult: (String) -> Void
@@ -14,7 +13,7 @@ struct PairingScannerView: View {
                     ContentUnavailableView {
                         Label(localized("Camera unavailable"), systemImage: "camera")
                     } description: {
-                        Text(localized("Allow camera access in Settings, or enter the pairing code manually."))
+                        Text(localized("Allow camera access in Settings to scan the QR code."))
                     } actions: {
                         Button(localized("Open Settings")) {
                             if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -31,7 +30,6 @@ struct PairingScannerView: View {
             }
             .navigationTitle(localized("Scan QR code"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { Button(localized("Done")) { dismiss() } }
             .task {
                 let available = await PairingScannerController.requestAvailability()
                 guard !Task.isCancelled else { return }

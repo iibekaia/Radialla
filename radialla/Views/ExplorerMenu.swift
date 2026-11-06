@@ -43,7 +43,7 @@ struct ExplorerMenu: View {
                     .accessibilityValue(Text(savedTracks.tracks.count, format: .number))
                     Divider()
                     Button { showsDevicePairing = true } label: {
-                        Label(localized("Device pairing"), systemImage: "link")
+                        Label(localized("Device pairing"), systemImage: "qrcode")
                             .frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)
                     }
                     Divider()

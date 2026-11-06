@@ -66,3 +66,5 @@
 "Open Settings" = "Open Settings";
 "Invalid Radialla QR code. Try again." = "Invalid Radialla QR code. Try again.";
 "This QR code uses a different Radialla server." = "This QR code uses a different Radialla server.";
+
+"Allow camera access in Settings to scan the QR code." = "Allow camera access in Settings to scan the QR code.";

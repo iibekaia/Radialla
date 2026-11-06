@@ -66,3 +66,5 @@
 "Open Settings" = "Ayarları aç";
 "Invalid Radialla QR code. Try again." = "Geçersiz Radialla QR kodu. Tekrar deneyin.";
 "This QR code uses a different Radialla server." = "Bu QR kodu farklı bir Radialla sunucusu kullanıyor.";
+
+"Allow camera access in Settings to scan the QR code." = "QR kodunu taramak için Ayarlardan kamera erişimine izin verin.";

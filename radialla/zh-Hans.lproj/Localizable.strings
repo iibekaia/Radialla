@@ -66,3 +66,5 @@
 "Open Settings" = "打开设置";
 "Invalid Radialla QR code. Try again." = "Radialla 二维码无效。请重试。";
 "This QR code uses a different Radialla server." = "此二维码使用的是其他 Radialla 服务器。";
+
+"Allow camera access in Settings to scan the QR code." = "请在设置中允许访问相机以扫描二维码。";

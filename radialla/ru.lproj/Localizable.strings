@@ -66,3 +66,5 @@
 "Open Settings" = "Открыть настройки";
 "Invalid Radialla QR code. Try again." = "Неверный QR-код Radialla. Попробуйте снова.";
 "This QR code uses a different Radialla server." = "Этот QR-код использует другой сервер Radialla.";
+
+"Allow camera access in Settings to scan the QR code." = "Разрешите доступ к камере в настройках, чтобы отсканировать QR-код.";
