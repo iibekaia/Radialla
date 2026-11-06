@@ -59,3 +59,10 @@
 "Quick access to your last radio station." = "Արագ մուտք վերջին լսած ռադիոկայանին։";
 "Song saved" = "Երգը պահված է";
 "Catalog loading stopped. Loaded stations remain available." = "Կատալոգի բեռնումը դադարեցվել է։ Բեռնված կայանները հասանելի են։";
+
+"Scan QR code" = "Սկանավորել QR կոդը";
+"Camera unavailable" = "Տեսախցիկն անհասանելի է";
+"Allow camera access in Settings, or enter the pairing code manually." = "Թույլատրեք տեսախցիկի հասանելիությունը կարգավորումներում կամ մուտքագրեք զուգակցման կոդը ձեռքով։";
+"Open Settings" = "Բացել կարգավորումները";
+"Invalid Radialla QR code. Try again." = "Radialla-ի QR կոդն անվավեր է։ Փորձեք կրկին։";
+"This QR code uses a different Radialla server." = "Այս QR կոդն օգտագործում է Radialla-ի այլ սերվեր։";

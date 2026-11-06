@@ -5,6 +5,8 @@ struct DevicePairingView: View {
     @ObservedObject var pairing: DevicePairingService
     @Environment(\.dismiss) private var dismiss
     @State private var enteredCode = ""
+    @State private var showingScanner = false
+    @State private var scannedPayload: String?
 
     var body: some View {
         NavigationStack {
@@ -38,6 +40,11 @@ struct DevicePairingView: View {
                     Section {
                         Button(localized("Generate pairing code")) { Task { await pairing.createCode() } }
                     }
+                    Section {
+                        Button { showingScanner = true } label: {
+                            Label(localized("Scan QR code"), systemImage: "qrcode.viewfinder")
+                        }
+                    }
                     Section(localized("Or enter a code from the web")) {
                         TextField(localized("8-digit code"), text: $enteredCode)
                             .keyboardType(.numberPad).textContentType(.oneTimeCode)
@@ -54,6 +61,17 @@ struct DevicePairingView: View {
                 }
             }
             .disabled(pairing.busy)
+            .sheet(isPresented: $showingScanner, onDismiss: {
+                if let payload = scannedPayload {
+                    scannedPayload = nil
+                    Task { await pairing.joinQRCode(payload) }
+                }
+            }) {
+                PairingScannerView { payload in
+                    scannedPayload = payload
+                    showingScanner = false
+                }
+            }
             .navigationTitle(localized("Device pairing"))
             .toolbar { Button(localized("Done")) { dismiss() } }
         }

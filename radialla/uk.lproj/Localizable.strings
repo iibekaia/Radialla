@@ -59,3 +59,10 @@
 "Quick access to your last radio station." = "Швидкий доступ до останньої радіостанції.";
 "Song saved" = "Пісню збережено";
 "Catalog loading stopped. Loaded stations remain available." = "Завантаження каталогу зупинено. Завантажені станції залишаються доступними.";
+
+"Scan QR code" = "Сканувати QR-код";
+"Camera unavailable" = "Камера недоступна";
+"Allow camera access in Settings, or enter the pairing code manually." = "Дозвольте доступ до камери в налаштуваннях або введіть код сполучення вручну.";
+"Open Settings" = "Відкрити налаштування";
+"Invalid Radialla QR code. Try again." = "Невірний QR-код Radialla. Спробуйте ще раз.";
+"This QR code uses a different Radialla server." = "Цей QR-код використовує інший сервер Radialla.";

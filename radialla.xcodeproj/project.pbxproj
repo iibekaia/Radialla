@@ -58,6 +58,12 @@
         }; name = Release; };
 
 /* Begin PBXBuildFile section */
+        B10000000000000000000076 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/PairingScannerView.swift; sourceTree = "<group>"; };
+        B20000000000000000000076 = {isa = PBXBuildFile; fileRef = B10000000000000000000076; };
+        B10000000000000000000075 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/PairingScannerController.swift; sourceTree = "<group>"; };
+        B20000000000000000000075 = {isa = PBXBuildFile; fileRef = B10000000000000000000075; };
+        B10000000000000000000074 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/PairingQRPayload.swift; sourceTree = "<group>"; };
+        B20000000000000000000074 = {isa = PBXBuildFile; fileRef = B10000000000000000000074; };
         B10000000000000000000073 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/DevicePairingView.swift; sourceTree = "<group>"; };
         B20000000000000000000073 = {isa = PBXBuildFile; fileRef = B10000000000000000000073; };
         B10000000000000000000072 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/DevicePairingService.swift; sourceTree = "<group>"; };
@@ -218,6 +224,9 @@
                 E00000000000000000000042,
                 E00000000000000000000043,
                 E00000000000000000000044,
+                B10000000000000000000074,
+                B10000000000000000000075,
+                B10000000000000000000076,
                 B10000000000000000000073,
                 B10000000000000000000072,
                 B10000000000000000000071,
@@ -355,6 +364,9 @@
                 F00000000000000000000042,
                 F00000000000000000000043,
                 F00000000000000000000044,
+                B20000000000000000000074,
+                B20000000000000000000075,
+                B20000000000000000000076,
                 B20000000000000000000073,
                 B20000000000000000000072,
                 B20000000000000000000071,

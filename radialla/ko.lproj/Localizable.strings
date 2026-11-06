@@ -59,3 +59,10 @@
 "Quick access to your last radio station." = "최근 청취한 방송국에 빠르게 접근합니다.";
 "Song saved" = "노래가 저장되었습니다";
 "Catalog loading stopped. Loaded stations remain available." = "목록 불러오기가 중단되었습니다. 불러온 방송국은 계속 이용할 수 있습니다.";
+
+"Scan QR code" = "QR 코드 스캔";
+"Camera unavailable" = "카메라를 사용할 수 없습니다";
+"Allow camera access in Settings, or enter the pairing code manually." = "설정에서 카메라 접근을 허용하거나 페어링 코드를 직접 입력하세요.";
+"Open Settings" = "설정 열기";
+"Invalid Radialla QR code. Try again." = "잘못된 Radialla QR 코드입니다. 다시 시도하세요.";
+"This QR code uses a different Radialla server." = "이 QR 코드는 다른 Radialla 서버를 사용합니다.";

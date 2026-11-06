@@ -13,6 +13,7 @@
 <key>CFBundleShortVersionString</key><string>0.1</string>
 <key>CFBundleVersion</key><string>1</string>
 <key>UILaunchScreen</key><dict/>
+<key>NSCameraUsageDescription</key><string>Scan a Radialla pairing QR code to connect your devices.</string>
 <key>NSLocationWhenInUseUsageDescription</key><string>შენი მდებარეობა გამოიყენება ახლომდებარე რადიოსადგურებისთვის და დაკვრისას სიჩქარის მიხედვით ხმის ავტომატურად შესამცირებლად, ფონურ რეჟიმშიც.</string>
 <key>UIBackgroundModes</key><array><string>audio</string><string>location</string></array>
 <key>NSAppTransportSecurity</key><dict><key>NSAllowsArbitraryLoadsForMedia</key><true/></dict>

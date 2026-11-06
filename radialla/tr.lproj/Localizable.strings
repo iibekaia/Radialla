@@ -59,3 +59,10 @@
 "Quick access to your last radio station." = "Son dinlediğiniz radyo istasyonuna hızlı erişim.";
 "Song saved" = "Şarkı kaydedildi";
 "Catalog loading stopped. Loaded stations remain available." = "Katalog yüklemesi durdu. Yüklenen istasyonlar kullanılabilir durumda.";
+
+"Scan QR code" = "QR kodunu tara";
+"Camera unavailable" = "Kamera kullanılamıyor";
+"Allow camera access in Settings, or enter the pairing code manually." = "Ayarlardan kamera erişimine izin verin veya eşleştirme kodunu elle girin.";
+"Open Settings" = "Ayarları aç";
+"Invalid Radialla QR code. Try again." = "Geçersiz Radialla QR kodu. Tekrar deneyin.";
+"This QR code uses a different Radialla server." = "Bu QR kodu farklı bir Radialla sunucusu kullanıyor.";

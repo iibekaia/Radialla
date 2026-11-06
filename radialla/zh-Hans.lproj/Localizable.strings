@@ -59,3 +59,10 @@
 "Quick access to your last radio station." = "快速收听上次播放的电台。";
 "Song saved" = "歌曲已保存";
 "Catalog loading stopped. Loaded stations remain available." = "目录加载已停止。已加载的电台仍然可用。";
+
+"Scan QR code" = "扫描二维码";
+"Camera unavailable" = "相机不可用";
+"Allow camera access in Settings, or enter the pairing code manually." = "请在设置中允许访问相机，或手动输入配对码。";
+"Open Settings" = "打开设置";
+"Invalid Radialla QR code. Try again." = "Radialla 二维码无效。请重试。";
+"This QR code uses a different Radialla server." = "此二维码使用的是其他 Radialla 服务器。";

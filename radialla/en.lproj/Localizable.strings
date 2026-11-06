@@ -59,3 +59,10 @@
 "Quick access to your last radio station." = "Quick access to your last radio station.";
 "Song saved" = "Song saved";
 "Catalog loading stopped. Loaded stations remain available." = "Catalog loading stopped. Loaded stations remain available.";
+
+"Scan QR code" = "Scan QR code";
+"Camera unavailable" = "Camera unavailable";
+"Allow camera access in Settings, or enter the pairing code manually." = "Allow camera access in Settings, or enter the pairing code manually.";
+"Open Settings" = "Open Settings";
+"Invalid Radialla QR code. Try again." = "Invalid Radialla QR code. Try again.";
+"This QR code uses a different Radialla server." = "This QR code uses a different Radialla server.";

@@ -65,6 +65,17 @@ final class DevicePairingService: ObservableObject {
         guard token == nil else { return }
         await connect(action: "join", body: ["code": code])
     }
+    func joinQRCode(_ text: String) async {
+        do {
+            let code = try PairingQRPayload.validatedCode(from: text, server: base)
+            await join(code)
+        } catch let failure as PairingQRPayload.Failure {
+            messageKey = failure.messageKey
+        } catch {
+            messageKey = "Invalid Radialla QR code. Try again."
+        }
+    }
+
     private func connect(action: String, body: [String: String]) async {
         guard !busy else { return }
         busy = true

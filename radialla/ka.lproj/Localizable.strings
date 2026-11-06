@@ -89,3 +89,10 @@
 "Pairing expired. Pair again." = "დაწყვილებას ვადა გაუვიდა. ხელახლა დააწყვილე.";
 
 "Pairing unavailable. Try again." = "დაწყვილება მიუწვდომელია. სცადე ხელახლა.";
+
+"Scan QR code" = "QR კოდის სკანირება";
+"Camera unavailable" = "კამერა მიუწვდომელია";
+"Allow camera access in Settings, or enter the pairing code manually." = "დაუშვი კამერაზე წვდომა პარამეტრებიდან ან შეიყვანე დაწყვილების კოდი ხელით.";
+"Open Settings" = "პარამეტრების გახსნა";
+"Invalid Radialla QR code. Try again." = "Radialla-ს QR კოდი არასწორია. სცადე ხელახლა.";
+"This QR code uses a different Radialla server." = "ეს QR კოდი Radialla-ს სხვა სერვერს იყენებს.";
