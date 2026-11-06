@@ -25,18 +25,19 @@ struct LastStationWidgetView: View {
                 HStack {
                     Text(verbatim: station.country).font(.caption).foregroundStyle(.secondary).lineLimit(1)
                     Spacer(minLength: 4)
-                    Image(systemName: "play.fill")
+                    Image(systemName: station.isPlaying ? "pause.fill" : "play.fill")
                         .font(.caption.bold()).foregroundStyle(.black)
                         .frame(width: 32, height: 32)
                         .background(accent, in: Circle())
-                        .accessibilityLabel(Text("Play last station"))
+                        .accessibilityLabel(Text(station.isPlaying ? "Pause station" : "Play last station"))
                 }
             } else {
                 Text("Open Radialla to choose a station.").font(.subheadline)
             }
         }
         .containerBackground(.background, for: .widget)
-        .widgetURL(WidgetStationSnapshot.playbackURL)
+        .widgetURL(entry.station?.isPlaying == true
+                   ? WidgetStationSnapshot.pauseURL : WidgetStationSnapshot.playbackURL)
         .environment(\.locale, Locale(identifier: entry.station?.language ?? Locale.current.identifier))
     }
 }

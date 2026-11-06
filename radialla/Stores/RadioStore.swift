@@ -17,7 +17,11 @@ final class RadioStore: ObservableObject {
     @Published var catalogMessage = RadioMessage("აირჩიე ადგილი და მოუსმინე მსოფლიოს")
     @Published var message = RadioMessage("აირჩიე ადგილი და მოუსმინე მსოფლიოს")
     @Published private(set) var isController = false
-    @Published private(set) var playing = false
+    @Published private(set) var playing = false {
+        didSet {
+            if playing != oldValue { refreshLastStationWidget() }
+        }
+    }
     @Published private(set) var playbackRequested = false
     @Published private(set) var isMuted = false
     let devicePairing = DevicePairingService()
@@ -91,7 +95,7 @@ final class RadioStore: ObservableObject {
                 self.message = RadioMessage("LIVE")
                 if let selected = self.selected {
                     self.lastStationStore.save(selected)
-                    WidgetStationBridge.update(selected)
+                    WidgetStationBridge.update(selected, playing: self.playing)
                 }
             }
         }
