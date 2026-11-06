@@ -17,7 +17,7 @@ struct StationMapView: View {
     let onRegionChange: (MKCoordinateRegion, Bool) -> Void
     var body: some View {
             Map(position: $camera, interactionModes: mapLayer == "terrain" ? .all : [.pan, .zoom]) {
-                if let selected = store.selected, let coordinate = selected.coordinate,
+                if let selected = store.selected, let coordinate = selected.mapCoordinate,
                    !onlyFavorites || store.favorites.contains(selected.id) {
                     Annotation(selected.name, coordinate: coordinate) {
                         ActiveStationMarker(isPlaying: store.playing && (region?.span.latitudeDelta ?? 150) < 40)

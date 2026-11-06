@@ -39,6 +39,8 @@ Restore the disk snapshot immediately. Allow up to 1.5 seconds for the initial c
 
 Save progress every 2,000 global records and at completion/country-load boundaries. Snapshots younger than six hours resume their offset; older snapshots stay visible while scanning restarts. Indexed merging updates changed records without adding duplicate IDs. Catalog progress does not overwrite playback/reconnection messages.
 
+The catalog includes stations without geographic metadata. Map display uses valid broadcaster coordinates first, then an offline country-capital lookup by country code (country name for legacy records). These approximate display coordinates are never written into broadcaster metadata. Stations with no identifiable capital remain accessible in the list without a fabricated marker. Catalog cache v2 restarts the scan so older geo-only snapshots cannot suppress the expanded catalog.
+
 Map clustering reuses the already-filtered station subset. The favorites list intentionally includes favorites outside the current viewport, while map markers remain viewport-filtered. Frequency expressions are compiled once; displayed frequencies are inferred from station names, not authoritative metadata.
 
 On launch, focus the restored station when it has coordinates; otherwise center once on the first location result. Returning from the background refreshes location-dependent data without moving the map. The location button still explicitly requests map focus. The map heart filters favorites and zooms to the first listed favorite when enabled. Selecting/skipping a station never zooms the camera; the active marker animates. List resizing has two resting heights and hides map controls until restored.

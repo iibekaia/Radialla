@@ -70,6 +70,10 @@
         B20000000000000000000072 = {isa = PBXBuildFile; fileRef = B10000000000000000000072; };
         B10000000000000000000071 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/PairingCredentialStore.swift; sourceTree = "<group>"; };
         B20000000000000000000071 = {isa = PBXBuildFile; fileRef = B10000000000000000000071; };
+        E00000000000000000000046 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/StationDeduplicator.swift; sourceTree = "<group>"; };
+        F00000000000000000000046 = {isa = PBXBuildFile; fileRef = E00000000000000000000046; };
+        E00000000000000000000045 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/StationMapLocation.swift; sourceTree = "<group>"; };
+        F00000000000000000000045 = {isa = PBXBuildFile; fileRef = E00000000000000000000045; };
         E00000000000000000000044 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/LiveBadge.swift; sourceTree = "<group>"; };
         F00000000000000000000044 = {isa = PBXBuildFile; fileRef = E00000000000000000000044; };
         E00000000000000000000043 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/StationRowView.swift; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
                 E00000000000000000000042,
                 E00000000000000000000043,
                 E00000000000000000000044,
+                E00000000000000000000045,
+                E00000000000000000000046,
                 B10000000000000000000074,
                 B10000000000000000000075,
                 B10000000000000000000076,
@@ -364,6 +370,8 @@
                 F00000000000000000000042,
                 F00000000000000000000043,
                 F00000000000000000000044,
+                F00000000000000000000045,
+                F00000000000000000000046,
                 B20000000000000000000074,
                 B20000000000000000000075,
                 B20000000000000000000076,

@@ -11,7 +11,7 @@ actor StationCatalogService {
     private let session = URLSession(configuration: .default)
     private var cacheURL: URL {
         FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("radialla-catalog-v1.json")
+            .appendingPathComponent("radialla-catalog-v2.json")
     }
 
     func restore() -> Snapshot? {
@@ -37,7 +37,6 @@ actor StationCatalogService {
                 components.path = "/json/stations/search"
                 components.queryItems = [
                     URLQueryItem(name: "hidebroken", value: "true"),
-                    URLQueryItem(name: "has_geo_info", value: "true"),
                     URLQueryItem(name: "order", value: "name"),
                     URLQueryItem(name: "limit", value: String(limit)),
                     URLQueryItem(name: "offset", value: String(offset))

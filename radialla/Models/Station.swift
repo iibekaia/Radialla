@@ -4,6 +4,7 @@ import CoreLocation
 struct Station: Codable, Equatable, Identifiable, Sendable {
     let stationuuid: String
     let name: String
+    let countrycode: String?
     let country: String
     let favicon: String?
     let language: String?
@@ -42,6 +43,8 @@ struct Station: Codable, Equatable, Identifiable, Sendable {
             #"(?<![\d.,])(\d{2,3}[.,]\d{1,2})(?![\d.,])"#
         ].compactMap { try? NSRegularExpression(pattern: $0) }
     }()
+    var mapCoordinate: CLLocationCoordinate2D? { StationMapLocation.coordinate(for: self) }
+
     var coordinate: CLLocationCoordinate2D? {
         guard let latitude = geo_lat, let longitude = geo_long,
               (-90...90).contains(latitude), (-180...180).contains(longitude) else { return nil }

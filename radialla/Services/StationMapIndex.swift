@@ -2,7 +2,7 @@ import MapKit
 
 enum StationMapIndex {
     static func focusRegion(for station: Station?) -> MKCoordinateRegion? {
-        guard let coordinate = station?.coordinate else { return nil }
+        guard let coordinate = station?.mapCoordinate else { return nil }
         return MKCoordinateRegion(center: coordinate,
                                   span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
     }
@@ -16,12 +16,13 @@ enum StationMapIndex {
 
     static func visibleStations(_ stations: [Station], favorites: Set<String>, onlyFavorites: Bool,
                                 region: MKCoordinateRegion?) -> [Station] {
-        stations.filter { station in
+        let visible = stations.filter { station in
             guard !onlyFavorites || favorites.contains(station.id) else { return false }
             guard let region else { return true }
-            guard let coordinate = station.coordinate else { return false }
+            guard let coordinate = station.mapCoordinate else { return false }
             return contains(coordinate, in: region)
         }
+        return StationDeduplicator.unique(visible, favorites: favorites)
     }
 
     static func clusters(_ stations: [Station], region: MKCoordinateRegion?) -> [StationCluster] {
@@ -31,7 +32,7 @@ enum StationMapIndex {
         let longitudeStep = max(0.002, (region?.span.longitudeDelta ?? 360) / divisions)
         var groups: [String: [Station]] = [:]
         for station in stations {
-            guard let coordinate = station.coordinate else { continue }
+            guard let coordinate = station.mapCoordinate else { continue }
             let latitudeCell = Int(floor((coordinate.latitude + 90) / latitudeStep))
             let longitudeCell = Int(floor((coordinate.longitude + 180) / longitudeStep))
             groups["\(latitudeCell):\(longitudeCell)", default: []].append(station)
