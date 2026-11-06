@@ -66,7 +66,12 @@ struct ExplorerView: View {
                     guard !isResizingList else { return }
                     region = newRegion
                     refreshMapClusters()
-                    if userMovedMap {
+                    if store.isController {
+                        awaitingMapAutoplay = false
+                        store.devicePairing.send(.viewport(latitude: newRegion.center.latitude,
+                            longitude: newRegion.center.longitude,
+                            longitudeDelta: newRegion.span.longitudeDelta))
+                    } else if userMovedMap {
                         awaitingMapAutoplay = true
                         playFirstVisibleStationIfNeeded()
                     }
@@ -83,7 +88,7 @@ struct ExplorerView: View {
     }
 
     private func playFirstVisibleStationIfNeeded() {
-        guard awaitingMapAutoplay, let station = visibleStations.first else { return }
+        guard !store.isController, awaitingMapAutoplay, let station = visibleStations.first else { return }
         awaitingMapAutoplay = false
         store.setStationQueue(visibleStations)
         guard station.id != store.selected?.id || !store.playing else { return }
@@ -160,7 +165,7 @@ struct ExplorerView: View {
             .onChange(of: visibleStations.map(\.id), initial: true) { _, _ in
                 store.setStationQueue(visibleStations)
                 playFirstVisibleStationIfNeeded()
-                if store.selected == nil, let firstStation = visibleStations.first {
+                if !store.isController, store.selected == nil, let firstStation = visibleStations.first {
                     store.play(firstStation, showPlayer: false)
                 }
             }

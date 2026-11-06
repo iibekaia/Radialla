@@ -68,3 +68,6 @@
 "This QR code uses a different Radialla server." = "이 QR 코드는 다른 Radialla 서버를 사용합니다.";
 
 "Allow camera access in Settings to scan the QR code." = "QR 코드를 스캔하려면 설정에서 카메라 접근을 허용하세요.";
+
+"Controller mode" = "리모컨 모드";
+"Control web playback and the map from this device. Audio plays on the web." = "이 기기에서 웹 라디오와 지도를 제어하세요. 오디오는 웹에서 재생됩니다.";

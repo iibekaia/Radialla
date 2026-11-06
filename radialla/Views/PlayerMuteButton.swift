@@ -13,6 +13,8 @@ struct PlayerMuteButton: View {
                 .overlay(Circle().strokeBorder(.primary.opacity(0.18)))
         }
         .buttonStyle(.plain)
+        .disabled(store.isController)
+        .opacity(store.isController ? 0.4 : 1)
         .foregroundStyle(store.isMuted ? Color.radioAccent : Color.primary)
         .accessibilityLabel(localized(store.isMuted ? "Unmute" : "Mute"))
     }

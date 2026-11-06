@@ -68,3 +68,6 @@
 "This QR code uses a different Radialla server." = "This QR code uses a different Radialla server.";
 
 "Allow camera access in Settings to scan the QR code." = "Allow camera access in Settings to scan the QR code.";
+
+"Controller mode" = "Controller mode";
+"Control web playback and the map from this device. Audio plays on the web." = "Control web playback and the map from this device. Audio plays on the web.";

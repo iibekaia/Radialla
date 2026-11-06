@@ -9,12 +9,14 @@ final class RadioStore: ObservableObject {
     @Published private(set) var playerPresentationID = UUID()
     var status: String { selected == nil ? catalogMessage.text : playbackStatus }
     var playbackStatus: String {
+        if isController { return localized("Controller mode") }
         if !playbackRequested { return localized("პაუზა") }
         if playing && isMuted { return localized("Muted") }
         return message.text
     }
     @Published var catalogMessage = RadioMessage("აირჩიე ადგილი და მოუსმინე მსოფლიოს")
     @Published var message = RadioMessage("აირჩიე ადგილი და მოუსმინე მსოფლიოს")
+    @Published private(set) var isController = false
     @Published private(set) var playing = false
     @Published private(set) var playbackRequested = false
     @Published private(set) var isMuted = false
@@ -44,13 +46,26 @@ final class RadioStore: ObservableObject {
     private var resumeAfterInterruption = false
 
     init() {
-        devicePairing.onRemotePause = { [weak self] in self?.pause() }
+        isController = devicePairing.paired
+        devicePairing.onControllerModeChange = { [weak self] enabled in
+            guard let self else { return }
+            self.stopLocalPlayback(discardItem: true)
+            self.isController = enabled
+        }
+        devicePairing.onPlaybackChange = { [weak self] type, stationID in
+            guard let self, self.isController else { return }
+            if let stationID, let station = self.stations.first(where: { $0.id == stationID }) {
+                self.selected = station
+            }
+            self.playbackRequested = type == "play"
+            self.playing = type == "play"
+        }
         artworkController.onChange = { [weak self] in
             guard let self else { return }
             self.updateNowPlaying(rate: self.playing ? 1 : 0)
         }
         recovery.onRetry = { [weak self] in
-            guard let self, self.playbackRequested, let station = self.selected else { return }
+            guard let self, !self.isController, self.playbackRequested, let station = self.selected else { return }
             self.play(station, showPlayer: false, reconnecting: true)
         }
         recovery.onWaitingForNetwork = { [weak self] in
@@ -63,10 +78,8 @@ final class RadioStore: ObservableObject {
         }
         speedVolume.onVolumeChange = { [weak self] gain in self?.player.volume = gain }
         playbackObserver.onStateChanged = { [weak self] state in
-            guard let self else { return }
-            let wasPlaying = self.playing
+            guard let self, !self.isController else { return }
             self.playing = state == .playing
-            if !self.playing { self.devicePairing.playbackSuspended() }
             self.updateNowPlaying(rate: self.playing ? 1 : 0)
             self.speedVolume.setActive(state == .playing)
             if state == .waitingToPlayAtSpecifiedRate {
@@ -74,7 +87,6 @@ final class RadioStore: ObservableObject {
                 self.recovery.stalled()
             }
             if state == .playing {
-                if !wasPlaying { self.devicePairing.playbackStarted() }
                 self.recovery.didStartPlaying()
                 self.message = RadioMessage("LIVE")
                 if let selected = self.selected {
@@ -84,16 +96,15 @@ final class RadioStore: ObservableObject {
             }
         }
         playbackObserver.onFailure = { [weak self] in
-            guard let self, self.playbackRequested else { return }
+            guard let self, !self.isController, self.playbackRequested else { return }
             self.playing = false
-            self.devicePairing.playbackSuspended()
             self.speedVolume.setActive(false)
             self.updateNowPlaying(rate: 0)
             self.message = RadioMessage("აუდიოს ჩართვა ვერ მოხერხდა")
             self.recovery.failed()
         }
         playbackObserver.onStall = { [weak self] in
-            guard let self, self.playbackRequested else { return }
+            guard let self, !self.isController, self.playbackRequested else { return }
             self.message = RadioMessage("იტვირთება აუდიო…")
             self.recovery.stalled()
         }
@@ -101,9 +112,9 @@ final class RadioStore: ObservableObject {
         systemControls.onPause = { [weak self] in self?.pause() }
         systemControls.onSkip = { [weak self] forward in self?.skipStation(forward: forward) }
         systemControls.onInterruptionBegan = { [weak self] in
-            guard let self else { return }
+            guard let self, !self.isController else { return }
             let requested = self.playbackRequested
-            self.pause()
+            self.stopLocalPlayback()
             self.resumeAfterInterruption = requested
         }
         systemControls.onInterruptionEnded = { [weak self] shouldResume in
@@ -114,17 +125,25 @@ final class RadioStore: ObservableObject {
         }
         if let lastStation = lastStationStore.load() {
             WidgetStationBridge.update(lastStation)
-            play(lastStation, showPlayer: false)
+            if isController { selected = lastStation }
+            else { play(lastStation, showPlayer: false) }
         }
     }
 
     func play(_ station: Station, showPlayer: Bool = true, reconnecting: Bool = false) {
+        if isController {
+            guard !reconnecting else { return }
+            selected = station
+            nowPlayingTrack = nil
+            if showPlayer { playerPresentationID = UUID() }
+            devicePairing.send(PairingCommand(type: "play", stationId: station.id))
+            return
+        }
         guard let url = station.streamURL else {
             message = RadioMessage("ამ სადგურის ბმული არასწორია")
             return
         }
         resumeAfterInterruption = false
-        if !reconnecting { devicePairing.playbackStopped() }
         recovery.begin(resetAttempts: !reconnecting)
         playbackRequested = true
         selected = station
@@ -175,6 +194,10 @@ final class RadioStore: ObservableObject {
     func resume() {
         resumeAfterInterruption = false
         guard let selected else { return }
+        if isController {
+            devicePairing.send(PairingCommand(type: "play", stationId: selected.id))
+            return
+        }
         artworkController.update(for: selected)
         if player.currentItem == nil || player.currentItem?.status == .failed
             || !recovery.networkPermitsPlayback {
@@ -195,23 +218,37 @@ final class RadioStore: ObservableObject {
     }
 
     func toggleMute() {
+        guard !isController else { return }
         isMuted.toggle()
         player.isMuted = isMuted
     }
 
     func pause() {
-        devicePairing.playbackStopped()
+        if isController {
+            devicePairing.send(PairingCommand(type: "pause"))
+            return
+        }
+        stopLocalPlayback()
+    }
+
+    private func stopLocalPlayback(discardItem: Bool = false) {
         resumeAfterInterruption = false
         playbackRequested = false
         recovery.stop()
         player.pause()
+        if discardItem {
+            player.replaceCurrentItem(with: nil)
+            playbackObserver.clearItem()
+            metadataReader.detach()
+            nowPlayingTrack = nil
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        }
         playing = false
         speedVolume.setActive(false)
         updateNowPlaying(rate: 0)
     }
 
     private func suspendForNetwork() {
-        devicePairing.playbackSuspended()
         player.pause()
         player.replaceCurrentItem(with: nil)
         playbackObserver.clearItem()
@@ -222,6 +259,7 @@ final class RadioStore: ObservableObject {
     }
 
     private func updateNowPlaying(rate: Double) {
+        guard !isController else { return }
         guard let selected else { return }
         systemControls.update(station: selected, track: nowPlayingTrack,
                               artwork: artworkController.artwork, rate: rate)

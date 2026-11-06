@@ -10,7 +10,7 @@ struct DevicePairingView: View {
         NavigationStack {
             Form {
                 Section {
-                    Text(localized("Starting playback here pauses your other paired devices, and vice versa."))
+                    Text(localized("Control web playback and the map from this device. Audio plays on the web."))
                     Text(localized("Both devices need an internet connection. Use the same Radialla server."))
                         .font(.footnote).foregroundStyle(.secondary)
                 }

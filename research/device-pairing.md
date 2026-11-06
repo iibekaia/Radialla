@@ -1,47 +1,54 @@
-# Device pairing integration
+# Device pairing and controller mode
 
-The app menu now contains Device pairing. It can generate an eight-digit code
-or join using a code from the web. The server URL is configured in
-`DevicePairingService.swift` and currently points to the Radialla Railway service.
-
-This client expects the pairing API being developed independently in radialla-web.
-Those server changes must be deployed before the screen works; a successful
-`/api/health` response alone does not mean the pairing endpoints exist.
+The iOS app joins the web receiver by scanning its one-use QR code. It never
+creates pairing codes. The server base is configured in DevicePairingService.
+The web receiver and server must include the controller command API.
 
 ## Wire contract
 
-All requests use POST with JSON and `Cache-Control: no-store` responses.
-Authenticated requests send `Authorization: Bearer <token>`, never tokens in URLs.
+All requests use POST JSON. Authenticated requests send
+`Authorization: Bearer <token>`; credentials never appear in URLs.
 
-- `/api/pairing/create` `{}` -> `{token, code, expiresAt, state}`
 - `/api/pairing/join` `{code}` -> `{token, state}`
-- `/api/pairing/code` `{}` (authenticated) -> `{code, expiresAt}`
-- `/api/pairing/claim` `{clientId}` (authenticated) -> state
-- `/api/pairing/wait` `{afterRevision}` (authenticated) -> state; long poll up to 25 seconds
-- `/api/pairing/leave` `{}` (authenticated) -> `{ok:true}`
+- `/api/pairing/command` `{type:"play", stationId}` -> state
+- `/api/pairing/command` `{type:"pause"}` -> state
+- `/api/pairing/command` `{type:"viewport", latitude, longitude, zoom}` -> state
+- `/api/pairing/wait` `{afterRevision}` -> state; long poll up to 25 seconds
+- `/api/pairing/leave` `{}` -> `{ok:true}`
 
-State is `{revision: integer, owner: string|null, members: integer}`. Expiry is
-Unix time in milliseconds. Client IDs are new UUIDs per running app instance.
-A 401 response clears the saved credentials and requires pairing again.
+State includes `revision`, `members`, optional `playback` and optional `viewport`.
+Playback commands contain `type`, optional `stationId` and `revision`. The app
+reflects server-accepted playback intent; this API does not report whether the
+browser's audio is actually audible. Browser autoplay policy may require a user
+gesture on the receiver before audio can start.
 
-The app saves its token in device-only Keychain storage. No account is required.
-Disconnect revokes server membership before clearing credentials locally.
-The initial server implementation stores pairing state in memory: a server
-restart/redeployment can require pairing again. It requires one server instance.
+## Mobile behavior
 
-Playback claims are sent after AVPlayer confirms playing. Loading and failed
-streams do not claim playback. Remote owner changes pause through RadioStore,
-which also cancels automatic recovery and clears interruption-resume intent.
-Revision checks ignore old responses; pending claims suppress stale remote pauses.
-Internet loss does not stop local audio, and exclusive playback cannot be
-guaranteed while a device is disconnected or the OS has suspended the process.
+A saved device-only Keychain token restores controller mode before the last
+station can autoplay. Joining stops AVPlayer, removes its item and metadata,
+cancels recovery/interruption resumption, and deactivates the audio session.
+Station selection, next/previous, and play/pause send ordered commands instead of
+starting local audio. Map camera changes send a viewport; the longitude span is
+converted to web zoom and values are clamped to the server's supported bounds.
+Map browsing does not automatically select a different station in controller mode.
+The app sends no legacy audio ownership claims.
+
+Explicit disconnect or HTTP 401 clears controller mode and returns to local
+controls, paused. Local playback resumes on the next user play action. Transient
+network failure keeps controller mode active so local audio cannot start
+unexpectedly. Failed commands are reported in the pairing screen and are not
+replayed automatically. Disconnect revokes server membership before forgetting
+the token; if the leave request fails, the user can retry.
 
 ## Verification
 
-Swift parsing, service type checking, plist and project-format validation can run
-with Command Line Tools. A full app build requires Xcode with the iOS SDK.
+Standalone checks cover QR validation, command JSON, viewport conversion,
+joining, command ordering, disconnect and expired credentials. Service type
+checking and Swift parsing can run with Command Line Tools. A full iOS app build
+requires Xcode with the iOS SDK.
 
-On real devices, check web-to-iOS and iOS-to-web switching, screen-locked audio,
-background/network reconnection, expired codes, server restart, disconnect,
-loading/failed streams, and simultaneous playback starts. iOS background execution
-must be verified on hardware; the HTTP client does not wake a suspended app.
+On hardware with the matching web deployment, verify pairing while the phone is
+playing, cold launch with saved pairing, station selection, rapid play/pause,
+map pan/zoom, network loss/recovery, token expiry, explicit disconnect, and local
+playback afterward. Check that no phone audio starts from interruptions, route
+changes or recovery while paired. Verify browser autoplay permission separately.

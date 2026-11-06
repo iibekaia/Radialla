@@ -68,3 +68,6 @@
 "This QR code uses a different Radialla server." = "Bu QR kodu farklı bir Radialla sunucusu kullanıyor.";
 
 "Allow camera access in Settings to scan the QR code." = "QR kodunu taramak için Ayarlardan kamera erişimine izin verin.";
+
+"Controller mode" = "Kumanda modu";
+"Control web playback and the map from this device. Audio plays on the web." = "Bu cihazdan web radyosunu ve haritayı kontrol edin. Ses web üzerinde çalınır.";

@@ -68,3 +68,6 @@
 "This QR code uses a different Radialla server." = "此二维码使用的是其他 Radialla 服务器。";
 
 "Allow camera access in Settings to scan the QR code." = "请在设置中允许访问相机以扫描二维码。";
+
+"Controller mode" = "遥控模式";
+"Control web playback and the map from this device. Audio plays on the web." = "使用此设备控制网页版电台播放和地图。音频在网页上播放。";

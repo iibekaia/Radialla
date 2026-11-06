@@ -68,3 +68,6 @@
 "This QR code uses a different Radialla server." = "Цей QR-код використовує інший сервер Radialla.";
 
 "Allow camera access in Settings to scan the QR code." = "Дозвольте доступ до камери в налаштуваннях, щоб відсканувати QR-код.";
+
+"Controller mode" = "Режим пульта";
+"Control web playback and the map from this device. Audio plays on the web." = "Керуйте радіо та картою на сайті з цього пристрою. Звук відтворюється на сайті.";

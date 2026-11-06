@@ -4,16 +4,23 @@ import Combine
 @MainActor
 final class DevicePairingService: ObservableObject {
     @Published private(set) var connected = false
-    @Published private(set) var paired = false
+    @Published private(set) var paired = false {
+        didSet { if paired != oldValue { onControllerModeChange?(paired) } }
+    }
     @Published private(set) var members = 0
     @Published private(set) var busy = false
     @Published private(set) var messageKey = ""
-    var onRemotePause: (() -> Void)?
+    var onControllerModeChange: ((Bool) -> Void)?
+    var onPlaybackChange: ((String, String?) -> Void)?
 
     private struct State: Decodable {
         let revision: Int
-        let owner: String?
+        let playback: Playback?
         let members: Int
+    }
+    private struct Playback: Decodable {
+        let type: String
+        let stationId: String?
     }
     private struct Reply: Decodable {
         let token: String?
@@ -22,38 +29,41 @@ final class DevicePairingService: ObservableObject {
     private enum Failure: Error { case expired, unavailable }
     private let base = URL(string: "https://radialla-web-production.up.railway.app/api/pairing/")!
     private let credentials = PairingCredentialStore()
-    private let clientID = UUID().uuidString
     private let session: URLSession
     private var token: String?
     private var watchTask: Task<Void, Never>?
-    private var claimTask: Task<Void, Never>?
+    private var commandTask: Task<Void, Never>?
     private var revision = -1
-    private var owner: String?
-    private var localPlaying = false
-    private var claimed = false
-    private var claiming = false
     private var generation = UUID()
 
-    init() {
+    init(session: URLSession? = nil) {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = 35
         config.timeoutIntervalForResource = 40
-        session = URLSession(configuration: config)
+        self.session = session ?? URLSession(configuration: config)
         token = credentials.read()
         paired = token != nil
         if paired { watch() }
     }
 
-    // Call only after AVPlayer reports actual playback, not on button taps/loading.
-    func playbackStarted() {
-        localPlaying = true
-        if paired && !claimed && !claiming { claim() }
-    }
-    func playbackSuspended() { localPlaying = false }
-
-    func playbackStopped() {
-        localPlaying = false
-        claimed = false
+    // Preserve input order, including rapid play/pause and map changes.
+    func send(_ command: PairingCommand) {
+        guard paired, !busy else { return }
+        let previous = commandTask
+        let current = generation
+        commandTask = Task { [weak self] in
+            await previous?.value
+            guard let self, !Task.isCancelled, self.generation == current, self.paired, !self.busy else { return }
+            do {
+                let state: State = try await self.request("command", body: command)
+                guard self.generation == current else { return }
+                self.connected = true
+                self.messageKey = ""
+                self.apply(state)
+            } catch {
+                if self.generation == current { self.handle(error) }
+            }
+        }
     }
 
     private func join(_ code: String) async {
@@ -85,15 +95,10 @@ final class DevicePairingService: ObservableObject {
                 credentials.save(newToken)
                 paired = true
                 revision = -1
-                claimed = false
             }
-            // A currently playing joining device claims after the successful stream start.
-            if localPlaying { claiming = true }
             if let state = reply.state { apply(state) }
             connected = true
             watch()
-            claiming = false
-            if localPlaying && !claimed { claim() }
         } catch {
             handle(error)
         }
@@ -110,25 +115,6 @@ final class DevicePairingService: ObservableObject {
         catch { messageKey = "Pairing unavailable. Try again." }
     }
 
-    private func claim() {
-        guard token != nil, !claiming else { return }
-        claiming = true
-        let current = generation
-        claimTask = Task { [weak self] in
-            guard let self else { return }
-            defer { if self.generation == current { self.claiming = false } }
-            do {
-                let state: State = try await self.request("claim", body: ["clientId": self.clientID])
-                guard self.generation == current else { return }
-                self.claimed = true
-                self.apply(state)
-                self.claiming = false
-                self.enforceOwner()
-            } catch {
-                if self.generation == current { self.handle(error) }
-            }
-        }
-    }
     private func watch() {
         watchTask?.cancel()
         let current = generation
@@ -141,7 +127,6 @@ final class DevicePairingService: ObservableObject {
                     self.connected = true
                     self.messageKey = ""
                     self.apply(state)
-                    if self.localPlaying && !self.claimed && !self.claiming { self.claim() }
                 } catch {
                     guard !Task.isCancelled, self.generation == current else { return }
                     self.handle(error)
@@ -154,14 +139,8 @@ final class DevicePairingService: ObservableObject {
     private func apply(_ state: State) {
         guard state.revision >= revision else { return }
         revision = state.revision
-        owner = state.owner
         members = state.members
-        enforceOwner()
-    }
-    private func enforceOwner() {
-        guard !claiming, localPlaying, let owner, owner != clientID else { return }
-        playbackStopped()
-        onRemotePause?()
+        if let playback = state.playback { onPlaybackChange?(playback.type, playback.stationId) }
     }
     private func handle(_ error: Error) {
         if case Failure.expired = error {
@@ -175,16 +154,14 @@ final class DevicePairingService: ObservableObject {
     private func clear() {
         generation = UUID()
         watchTask?.cancel()
-        claimTask?.cancel()
+        commandTask?.cancel()
+        commandTask = nil
         token = nil
         credentials.save(nil)
         paired = false
         connected = false
-        claimed = false
-        claiming = false
         members = 0
         revision = -1
-        owner = nil
     }
     private func request<T: Decodable, B: Encodable>(_ action: String, body: B) async throws -> T {
         var request = URLRequest(url: base.appendingPathComponent(action))
