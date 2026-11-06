@@ -58,6 +58,8 @@
         }; name = Release; };
 
 /* Begin PBXBuildFile section */
+        B10000000000000000000078 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/PairingSocketConnection.swift; sourceTree = "<group>"; };
+        B20000000000000000000078 = {isa = PBXBuildFile; fileRef = B10000000000000000000078; };
         B10000000000000000000077 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/PairingCommand.swift; sourceTree = "<group>"; };
         B20000000000000000000077 = {isa = PBXBuildFile; fileRef = B10000000000000000000077; };
         B10000000000000000000076 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/PairingScannerView.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
                 B10000000000000000000077,
                 B10000000000000000000073,
                 B10000000000000000000072,
+                B10000000000000000000078,
                 B10000000000000000000071,
                 E00000000000000000000036,
                 E00000000000000000000028,
@@ -381,6 +384,7 @@
                 B20000000000000000000077,
                 B20000000000000000000073,
                 B20000000000000000000072,
+                B20000000000000000000078,
                 B20000000000000000000071,
                 F00000000000000000000036,
                 F00000000000000000000028,

@@ -19,7 +19,10 @@ final class PairingProtocol: URLProtocol {
         defer { Self.lock.unlock() }
         let action = request.url!.lastPathComponent
         Self.actions.append(action)
-        if action == "wait" { return } // Held long poll; cancelled by disconnect.
+        if action == "socket" {
+            client!.urlProtocol(self, didFailWithError: URLError(.cannotConnectToHost))
+            return // Socket transport is exercised separately against the web server.
+        }
         var state: [String: Any] = ["revision": Self.revision, "members": 2]
         var result: [String: Any] = [:]
         var status = 200
@@ -81,6 +84,7 @@ final class PairingProtocol: URLProtocol {
         precondition(!service.paired && modes == [true, false, true, false])
         precondition(service.messageKey == "Pairing expired. Pair again.")
         precondition(!PairingProtocol.actions.contains("claim"))
+        precondition(!PairingProtocol.actions.contains("wait"))
         print("Controller pairing, command order, disconnect and expiry passed")
     }
 }

@@ -18,6 +18,10 @@ final class DevicePairingService: ObservableObject {
         let playback: Playback?
         let members: Int
     }
+    private struct SocketEvent: Decodable {
+        let type: String
+        let state: State?
+    }
     private struct Playback: Decodable {
         let type: String
         let stationId: String?
@@ -32,6 +36,7 @@ final class DevicePairingService: ObservableObject {
     private let session: URLSession
     private var token: String?
     private var watchTask: Task<Void, Never>?
+    private var socket: PairingSocketConnection?
     private var commandTask: Task<Void, Never>?
     private var revision = -1
     private var generation = UUID()
@@ -117,21 +122,41 @@ final class DevicePairingService: ObservableObject {
 
     private func watch() {
         watchTask?.cancel()
+        socket?.close()
         let current = generation
         watchTask = Task { [weak self] in
+            var retryDelay = 0.5
             while !Task.isCancelled {
-                guard let self, self.token != nil, self.generation == current else { return }
+                guard let self, let token = self.token, self.generation == current else { return }
+                let connection = PairingSocketConnection(session: self.session, base: self.base)
+                self.socket = connection
                 do {
-                    let state: State = try await self.request("wait", body: ["afterRevision": self.revision])
-                    guard !Task.isCancelled, self.generation == current else { return }
-                    self.connected = true
-                    self.messageKey = ""
-                    self.apply(state)
+                    try await connection.authenticate(token: token)
+                    while !Task.isCancelled {
+                        let data = try await connection.receive()
+                        guard !Task.isCancelled, self.generation == current else { return }
+                        let event = try JSONDecoder().decode(SocketEvent.self, from: data)
+                        switch event.type {
+                        case "state":
+                            guard let state = event.state else { throw Failure.unavailable }
+                            self.connected = true
+                            self.messageKey = ""
+                            self.apply(state)
+                            retryDelay = 0.5
+                        case "heartbeat": break
+                        default: throw Failure.unavailable
+                        }
+                    }
                 } catch {
                     guard !Task.isCancelled, self.generation == current else { return }
-                    self.handle(error)
+                    let expired = connection.expired
+                    connection.close()
+                    self.socket = nil
+                    self.handle(expired ? Failure.expired : error)
                     if self.token == nil { return }
-                    try? await Task.sleep(for: .seconds(3))
+                    do { try await Task.sleep(for: .seconds(retryDelay)) }
+                    catch { return }
+                    retryDelay = min(retryDelay * 2, 8)
                 }
             }
         }
@@ -154,6 +179,8 @@ final class DevicePairingService: ObservableObject {
     private func clear() {
         generation = UUID()
         watchTask?.cancel()
+        socket?.close()
+        socket = nil
         commandTask?.cancel()
         commandTask = nil
         token = nil
