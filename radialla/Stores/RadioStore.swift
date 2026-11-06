@@ -18,6 +18,7 @@ final class RadioStore: ObservableObject {
     @Published private(set) var playing = false
     @Published private(set) var playbackRequested = false
     @Published private(set) var isMuted = false
+    let devicePairing = DevicePairingService()
     private let speedVolume = SpeedVolumeController()
     private let lastStationStore = LastStationStore()
     private let metadataReader = StreamMetadataReader()
@@ -43,6 +44,7 @@ final class RadioStore: ObservableObject {
     private var resumeAfterInterruption = false
 
     init() {
+        devicePairing.onRemotePause = { [weak self] in self?.pause() }
         artworkController.onChange = { [weak self] in
             guard let self else { return }
             self.updateNowPlaying(rate: self.playing ? 1 : 0)
@@ -62,7 +64,9 @@ final class RadioStore: ObservableObject {
         speedVolume.onVolumeChange = { [weak self] gain in self?.player.volume = gain }
         playbackObserver.onStateChanged = { [weak self] state in
             guard let self else { return }
+            let wasPlaying = self.playing
             self.playing = state == .playing
+            if !self.playing { self.devicePairing.playbackSuspended() }
             self.updateNowPlaying(rate: self.playing ? 1 : 0)
             self.speedVolume.setActive(state == .playing)
             if state == .waitingToPlayAtSpecifiedRate {
@@ -70,6 +74,7 @@ final class RadioStore: ObservableObject {
                 self.recovery.stalled()
             }
             if state == .playing {
+                if !wasPlaying { self.devicePairing.playbackStarted() }
                 self.recovery.didStartPlaying()
                 self.message = RadioMessage("LIVE")
                 if let selected = self.selected {
@@ -81,6 +86,7 @@ final class RadioStore: ObservableObject {
         playbackObserver.onFailure = { [weak self] in
             guard let self, self.playbackRequested else { return }
             self.playing = false
+            self.devicePairing.playbackSuspended()
             self.speedVolume.setActive(false)
             self.updateNowPlaying(rate: 0)
             self.message = RadioMessage("აუდიოს ჩართვა ვერ მოხერხდა")
@@ -118,6 +124,7 @@ final class RadioStore: ObservableObject {
             return
         }
         resumeAfterInterruption = false
+        if !reconnecting { devicePairing.playbackStopped() }
         recovery.begin(resetAttempts: !reconnecting)
         playbackRequested = true
         selected = station
@@ -193,6 +200,7 @@ final class RadioStore: ObservableObject {
     }
 
     func pause() {
+        devicePairing.playbackStopped()
         resumeAfterInterruption = false
         playbackRequested = false
         recovery.stop()
@@ -203,6 +211,7 @@ final class RadioStore: ObservableObject {
     }
 
     private func suspendForNetwork() {
+        devicePairing.playbackSuspended()
         player.pause()
         player.replaceCurrentItem(with: nil)
         playbackObserver.clearItem()

@@ -5,6 +5,8 @@ struct ExplorerMenu: View {
     @EnvironmentObject private var savedTracks: SavedTracksStore
     let close: () -> Void
     @State private var showsSavedTracks = false
+    @State private var showsDevicePairing = false
+    @EnvironmentObject private var store: RadioStore
 
     var body: some View {
         VStack(spacing: 0) {
@@ -40,6 +42,11 @@ struct ExplorerMenu: View {
                     .accessibilityLabel(localized("Saved songs"))
                     .accessibilityValue(Text(savedTracks.tracks.count, format: .number))
                     Divider()
+                    Button { showsDevicePairing = true } label: {
+                        Label(localized("Device pairing"), systemImage: "link")
+                            .frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)
+                    }
+                    Divider()
                     InterfaceLanguagePicker()
                         .pickerStyle(.menu)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -50,6 +57,9 @@ struct ExplorerMenu: View {
         }
         .buttonStyle(.plain)
         .tint(Color.radioAccent)
+        .sheet(isPresented: $showsDevicePairing) {
+            DevicePairingView(pairing: store.devicePairing).modifier(RadioSheetStyle())
+        }
         .sheet(isPresented: $showsSavedTracks) {
             SavedTracksView()
                 .modifier(RadioSheetStyle())

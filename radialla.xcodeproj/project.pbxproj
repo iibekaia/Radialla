@@ -58,6 +58,12 @@
         }; name = Release; };
 
 /* Begin PBXBuildFile section */
+        B10000000000000000000073 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/DevicePairingView.swift; sourceTree = "<group>"; };
+        B20000000000000000000073 = {isa = PBXBuildFile; fileRef = B10000000000000000000073; };
+        B10000000000000000000072 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/DevicePairingService.swift; sourceTree = "<group>"; };
+        B20000000000000000000072 = {isa = PBXBuildFile; fileRef = B10000000000000000000072; };
+        B10000000000000000000071 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Services/PairingCredentialStore.swift; sourceTree = "<group>"; };
+        B20000000000000000000071 = {isa = PBXBuildFile; fileRef = B10000000000000000000071; };
         E00000000000000000000044 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/LiveBadge.swift; sourceTree = "<group>"; };
         F00000000000000000000044 = {isa = PBXBuildFile; fileRef = E00000000000000000000044; };
         E00000000000000000000043 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialla/Views/StationRowView.swift; sourceTree = "<group>"; };
@@ -212,6 +218,9 @@
                 E00000000000000000000042,
                 E00000000000000000000043,
                 E00000000000000000000044,
+                B10000000000000000000073,
+                B10000000000000000000072,
+                B10000000000000000000071,
                 E00000000000000000000036,
                 E00000000000000000000028,
                 E00000000000000000000026,
@@ -346,6 +355,9 @@
                 F00000000000000000000042,
                 F00000000000000000000043,
                 F00000000000000000000044,
+                B20000000000000000000073,
+                B20000000000000000000072,
+                B20000000000000000000071,
                 F00000000000000000000036,
                 F00000000000000000000028,
                 F00000000000000000000026,

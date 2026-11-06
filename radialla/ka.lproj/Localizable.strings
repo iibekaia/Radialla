@@ -59,3 +59,33 @@
 "Quick access to your last radio station." = "სწრაფი წვდომა ბოლო მოსმენილ რადიოზე.";
 "Song saved" = "სიმღერა შენახულია";
 "Catalog loading stopped. Loaded stations remain available." = "სიის ჩატვირთვა შეჩერდა. ჩატვირთული სადგურები ხელმისაწვდომია.";
+
+"Device pairing" = "მოწყობილობების დაწყვილება";
+
+"Done" = "მზადაა";
+
+"Connected" = "დაკავშირებულია";
+
+"Paired devices" = "დაწყვილებული მოწყობილობები";
+
+"Generate pairing code" = "დაწყვილების კოდის შექმნა";
+
+"Disconnect this device" = "ამ მოწყობილობის გათიშვა";
+
+"Or enter a code from the web" = "ან შეიყვანე კოდი ვებიდან";
+
+"8-digit code" = "8-ნიშნა კოდი";
+
+"Pair device" = "მოწყობილობის დაწყვილება";
+
+"Starting playback here pauses your other paired devices, and vice versa." = "აქ დაკვრის დაწყება სხვა დაწყვილებულ მოწყობილობებს შეაჩერებს და პირიქით.";
+
+"Both devices need an internet connection. Use the same Radialla server." = "ორივე მოწყობილობას ინტერნეტი და Radialla-ს ერთი და იგივე სერვერი სჭირდება.";
+
+"Enter this code on your other device. It expires in 5 minutes." = "შეიყვანე ეს კოდი მეორე მოწყობილობაზე. კოდი მოქმედებს 5 წუთი.";
+
+"Code expired. Generate a new one." = "კოდს ვადა გაუვიდა. შექმენი ახალი.";
+
+"Pairing expired. Pair again." = "დაწყვილებას ვადა გაუვიდა. ხელახლა დააწყვილე.";
+
+"Pairing unavailable. Try again." = "დაწყვილება მიუწვდომელია. სცადე ხელახლა.";
