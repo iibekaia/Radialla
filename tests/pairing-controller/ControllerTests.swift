@@ -85,6 +85,61 @@ final class PairingProtocol: URLProtocol {
         precondition(service.messageKey == "Pairing expired. Pair again.")
         precondition(!PairingProtocol.actions.contains("claim"))
         precondition(!PairingProtocol.actions.contains("wait"))
-        print("Controller pairing, command order, disconnect and expiry passed")
+        let offline = DevicePairingService(session: URLSession(configuration: config), fallbackDelay: .milliseconds(50))
+        var fallbacks = 0
+        offline.onReceiverUnavailable = { fallbacks += 1 }
+        await offline.joinQRCode(qr)
+        for _ in 0..<100 where offline.isControlling { try await Task.sleep(for: .milliseconds(10)) }
+        precondition(offline.paired && !offline.isControlling && fallbacks == 1)
+        // Explicit disconnect must stay paused and cancel pending fallback.
+        await offline.disconnect()
+        precondition(!offline.paired)
+        await offline.joinQRCode(qr)
+        await offline.disconnect()
+        try await Task.sleep(for: .milliseconds(100))
+        precondition(fallbacks == 1)
+        print("Controller pairing, command order, disconnect, expiry and local fallback passed")
+        if let origin = CommandLine.arguments.dropFirst().first {
+            try await verifyReceiverReturn(origin: URL(string: origin)!)
+        }
+    }
+
+    // Optional end-to-end check against a disposable local pairing server.
+    @MainActor static func verifyReceiverReturn(origin: URL) async throws {
+        precondition(origin.host == "127.0.0.1" || origin.host == "localhost")
+        let base = origin.appendingPathComponent("api/pairing/")
+        let session = URLSession(configuration: .ephemeral)
+        var request = URLRequest(url: base.appendingPathComponent("create"))
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = Data("{}".utf8)
+        let (data, _) = try await session.data(for: request)
+        let receiver = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+        let token = receiver["token"] as! String
+        let socket = PairingSocketConnection(session: session, base: base)
+        try await socket.authenticate(token: token)
+        _ = try await socket.receive()
+
+        let service = DevicePairingService(session: session, fallbackDelay: .milliseconds(50), base: base)
+        var modes: [Bool] = []
+        service.onControllerModeChange = { modes.append($0) }
+        let payload: [String: Any] = ["type": "radialla-pairing", "version": 1,
+            "apiBaseUrl": origin.absoluteString, "code": receiver["code"] as! String,
+            "expiresAt": receiver["expiresAt"] as! Double]
+        let qr = String(decoding: try JSONSerialization.data(withJSONObject: payload), as: UTF8.self)
+        await service.joinQRCode(qr)
+        precondition(service.connected && modes == [true])
+        socket.close()
+        for _ in 0..<100 where service.isControlling { try await Task.sleep(for: .milliseconds(10)) }
+        precondition(service.paired && modes == [true, false])
+
+        let restored = PairingSocketConnection(session: session, base: base)
+        try await restored.authenticate(token: token)
+        for _ in 0..<100 where !service.isControlling { try await Task.sleep(for: .milliseconds(10)) }
+        precondition(service.connected && modes == [true, false, true])
+        await service.disconnect()
+        restored.close()
+        session.invalidateAndCancel()
+        print("Receiver loss and return restored controller mode with the same pairing")
     }
 }

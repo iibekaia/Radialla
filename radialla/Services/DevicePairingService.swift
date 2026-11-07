@@ -4,19 +4,22 @@ import Combine
 @MainActor
 final class DevicePairingService: ObservableObject {
     @Published private(set) var connected = false
-    @Published private(set) var paired = false {
-        didSet { if paired != oldValue { onControllerModeChange?(paired) } }
+    @Published private(set) var paired = false
+    @Published private(set) var isControlling = false {
+        didSet { if isControlling != oldValue { onControllerModeChange?(isControlling) } }
     }
     @Published private(set) var members = 0
     @Published private(set) var busy = false
     @Published private(set) var messageKey = ""
     var onControllerModeChange: ((Bool) -> Void)?
     var onPlaybackChange: ((String, String?) -> Void)?
+    var onReceiverUnavailable: (() -> Void)?
 
     private struct State: Decodable {
         let revision: Int
         let playback: Playback?
         let members: Int
+        let receiverOnline: Bool?
     }
     private struct SocketEvent: Decodable {
         let type: String
@@ -31,42 +34,47 @@ final class DevicePairingService: ObservableObject {
         let state: State?
     }
     private enum Failure: Error { case expired, unavailable }
-    private let base = URL(string: "https://radialla-web-production.up.railway.app/api/pairing/")!
+    private let base: URL
     private let credentials = PairingCredentialStore()
     private let session: URLSession
     private var token: String?
     private var watchTask: Task<Void, Never>?
     private var socket: PairingSocketConnection?
     private var commandTask: Task<Void, Never>?
+    private var fallbackTask: Task<Void, Never>?
+    private let fallbackDelay: Duration
     private var revision = -1
     private var generation = UUID()
 
-    init(session: URLSession? = nil) {
+    init(session: URLSession? = nil, fallbackDelay: Duration = .seconds(8),
+         base: URL = URL(string: "https://radialla-web-production.up.railway.app/api/pairing/")!) {
+        self.base = base
+        self.fallbackDelay = fallbackDelay
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = 35
         config.timeoutIntervalForResource = 40
         self.session = session ?? URLSession(configuration: config)
         token = credentials.read()
         paired = token != nil
+        isControlling = paired
         if paired { watch() }
     }
 
     // Preserve input order, including rapid play/pause and map changes.
     func send(_ command: PairingCommand) {
-        guard paired, !busy else { return }
+        guard isControlling, !busy else { return }
         let previous = commandTask
         let current = generation
         commandTask = Task { [weak self] in
             await previous?.value
-            guard let self, !Task.isCancelled, self.generation == current, self.paired, !self.busy else { return }
+            guard let self, !Task.isCancelled, self.generation == current, self.isControlling, !self.busy else { return }
             do {
                 let state: State = try await self.request("command", body: command)
-                guard self.generation == current else { return }
-                self.connected = true
+                guard !Task.isCancelled, self.generation == current else { return }
                 self.messageKey = ""
                 self.apply(state)
             } catch {
-                if self.generation == current { self.handle(error) }
+                if !Task.isCancelled, self.generation == current { self.handle(error) }
             }
         }
     }
@@ -99,10 +107,10 @@ final class DevicePairingService: ObservableObject {
                 token = newToken
                 credentials.save(newToken)
                 paired = true
+                isControlling = true
                 revision = -1
             }
             if let state = reply.state { apply(state) }
-            connected = true
             watch()
         } catch {
             handle(error)
@@ -139,7 +147,6 @@ final class DevicePairingService: ObservableObject {
                         switch event.type {
                         case "state":
                             guard let state = event.state else { throw Failure.unavailable }
-                            self.connected = true
                             self.messageKey = ""
                             self.apply(state)
                             retryDelay = 0.5
@@ -165,18 +172,53 @@ final class DevicePairingService: ObservableObject {
         guard state.revision >= revision else { return }
         revision = state.revision
         members = state.members
-        if let playback = state.playback { onPlaybackChange?(playback.type, playback.stationId) }
+        connected = state.receiverOnline != false
+        if connected {
+            cancelFallback()
+            isControlling = true
+        } else {
+            scheduleFallback()
+        }
+        if isControlling, let playback = state.playback {
+            onPlaybackChange?(playback.type, playback.stationId)
+        }
     }
     private func handle(_ error: Error) {
         if case Failure.expired = error {
+            fallBackToLocalPlayback()
             clear()
             messageKey = "Pairing expired. Pair again."
         } else {
             connected = false
             messageKey = "Pairing unavailable. Try again."
+            scheduleFallback()
         }
     }
+    private func scheduleFallback() {
+        guard isControlling, fallbackTask == nil else { return }
+        let current = generation
+        fallbackTask = Task { [weak self, fallbackDelay] in
+            do { try await Task.sleep(for: fallbackDelay) }
+            catch { return }
+            guard let self, self.generation == current, self.paired else { return }
+            self.fallbackTask = nil
+            self.fallBackToLocalPlayback()
+        }
+    }
+    private func cancelFallback() {
+        fallbackTask?.cancel()
+        fallbackTask = nil
+    }
+    private func fallBackToLocalPlayback() {
+        guard isControlling else { return }
+        commandTask?.cancel()
+        commandTask = nil
+        isControlling = false
+        connected = false
+        onReceiverUnavailable?()
+    }
     private func clear() {
+        cancelFallback()
         generation = UUID()
         watchTask?.cancel()
         socket?.close()
@@ -186,6 +228,7 @@ final class DevicePairingService: ObservableObject {
         token = nil
         credentials.save(nil)
         paired = false
+        isControlling = false
         connected = false
         members = 0
         revision = -1

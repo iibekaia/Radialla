@@ -18,7 +18,10 @@ Explicit actions use POST JSON. Authenticated HTTP requests send
   The app no longer calls the legacy HTTP `/wait` endpoint.
 - `/api/pairing/leave` `{}` -> `{ok:true}`
 
-State includes `revision`, `members`, optional `playback` and optional `viewport`.
+State includes `revision`, `members`, `receiverOnline`, optional `playback` and optional `viewport`.
+`receiverOnline` tracks live authenticated browser sockets for the device that
+created the pairing. A phone socket or saved browser membership alone does not
+count. Older servers omit the field, so browser presence requires the updated server.
 Playback commands contain `type`, optional `stationId` and `revision`. The app
 reflects server-accepted playback intent; this API does not report whether the
 browser's audio is actually audible. Browser autoplay policy may require a user
@@ -40,17 +43,26 @@ receiving a fresh snapshot after reconnect. A 10-second initial deadline and
 45-second message watchdog close stalled connections. Credentials stay out of
 WebSocket URLs.
 
-Explicit disconnect, WebSocket close code 4401, or HTTP 401 clears controller mode and returns to local
-controls, paused. Local playback resumes on the next user play action. Transient
-network failure keeps controller mode active so local audio cannot start
-unexpectedly. Failed commands are reported in the pairing screen and are not
-replayed automatically. Disconnect revokes server membership before forgetting
-the token; if the leave request fails, the user can retry.
+If the browser goes offline or the phone loses its connection to the pairing
+server, the app waits eight seconds before switching to its local player. It
+resumes the selected station when playback was requested and stays paused
+otherwise. A browser that loses power without closing its socket is detected
+by the server heartbeat before this grace period starts.
+
+The Keychain token and subscription survive temporary receiver loss. When the
+browser reconnects to the same pairing, the app stops local audio, returns to
+controller mode and sends the phone's current play or pause intent to the browser.
+An expired token clears the saved pairing. Explicit disconnect revokes membership
+before forgetting the token and leaves remote playback under browser control.
+If the leave request fails, the user can retry.
 
 ## Verification
 
 Standalone checks cover QR validation, command JSON, viewport conversion,
-joining, command ordering, disconnect and expired credentials.
+joining, command ordering, disconnect, expired credentials and local fallback.
+`tests/pairing-controller/ControllerTests.swift` also accepts a disposable localhost
+server origin to verify that the same pairing restores controller mode when the
+receiver returns.
 `tests/pairing-socket/SocketTests.swift` runs against a disposable local
 radialla-web server and verifies first-frame authentication, live state delivery,
 fresh snapshots after reconnect and revoked-token close code 4401. Compile it
@@ -63,4 +75,6 @@ On hardware with the matching web deployment, verify pairing while the phone is
 playing, cold launch with saved pairing, station selection, rapid play/pause,
 map pan/zoom, network loss/recovery, token expiry, explicit disconnect, and local
 playback afterward. Check that no phone audio starts from interruptions, route
-changes or recovery while paired. Verify browser autoplay permission separately.
+changes or recovery while the app is controlling the browser. Verify that closing
+and reopening the browser hands playback over in both directions, including when
+paused, and check background suspension and browser autoplay separately.

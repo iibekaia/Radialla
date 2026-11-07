@@ -48,19 +48,38 @@ final class RadioStore: ObservableObject {
     var catalogComplete = false
     private lazy var playbackObserver = PlaybackItemObserver(player: player)
     private var resumeAfterInterruption = false
+    private var controllerPlaybackRequested = false
+    private var handedOffToPhone = false
 
     init() {
-        isController = devicePairing.paired
+        isController = devicePairing.isControlling
         devicePairing.onControllerModeChange = { [weak self] enabled in
             guard let self else { return }
+            let transferPlayback = enabled && self.handedOffToPhone && !self.devicePairing.busy
+            let stationID = self.playbackRequested ? self.selected?.id : nil
             self.stopLocalPlayback(discardItem: true)
             self.isController = enabled
+            if enabled {
+                self.handedOffToPhone = false
+                self.controllerPlaybackRequested = false
+            }
+            if transferPlayback {
+                self.devicePairing.send(stationID.map { PairingCommand(type: "play", stationId: $0) }
+                                        ?? PairingCommand(type: "pause"))
+            }
+        }
+        devicePairing.onReceiverUnavailable = { [weak self] in
+            guard let self else { return }
+            self.handedOffToPhone = true
+            guard self.controllerPlaybackRequested, let station = self.selected else { return }
+            self.play(station, showPlayer: false)
         }
         devicePairing.onPlaybackChange = { [weak self] type, stationID in
             guard let self, self.isController else { return }
             if let stationID, let station = self.stations.first(where: { $0.id == stationID }) {
                 self.selected = station
             }
+            self.controllerPlaybackRequested = type == "play"
             self.playbackRequested = type == "play"
             self.playing = type == "play"
         }
@@ -137,6 +156,7 @@ final class RadioStore: ObservableObject {
     func play(_ station: Station, showPlayer: Bool = true, reconnecting: Bool = false) {
         if isController {
             guard !reconnecting else { return }
+            controllerPlaybackRequested = true
             selected = station
             nowPlayingTrack = nil
             if showPlayer { playerPresentationID = UUID() }
@@ -199,6 +219,7 @@ final class RadioStore: ObservableObject {
         resumeAfterInterruption = false
         guard let selected else { return }
         if isController {
+            controllerPlaybackRequested = true
             devicePairing.send(PairingCommand(type: "play", stationId: selected.id))
             return
         }
@@ -229,6 +250,7 @@ final class RadioStore: ObservableObject {
 
     func pause() {
         if isController {
+            controllerPlaybackRequested = false
             devicePairing.send(PairingCommand(type: "pause"))
             return
         }
