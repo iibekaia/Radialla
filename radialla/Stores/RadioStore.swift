@@ -4,6 +4,8 @@ import AVFoundation
 
 @MainActor
 final class RadioStore: ObservableObject {
+    static let shared = RadioStore()
+
     @Published var stations: [Station] = []
     @Published private(set) var selected: Station?
     @Published private(set) var playerPresentationID = UUID()
@@ -50,6 +52,7 @@ final class RadioStore: ObservableObject {
     private var resumeAfterInterruption = false
     private var controllerPlaybackRequested = false
     private var handedOffToPhone = false
+    private var hasHandledInitialPlayback = false
 
     init() {
         isController = devicePairing.isControlling
@@ -147,13 +150,21 @@ final class RadioStore: ObservableObject {
             if requested && shouldResume { self.resume() }
         }
         if let lastStation = lastStationStore.load() {
+            selected = lastStation
             WidgetStationBridge.update(lastStation)
-            if isController { selected = lastStation }
-            else { play(lastStation, showPlayer: false) }
+        }
+    }
+
+    func restorePlaybackOnLaunch() {
+        guard !hasHandledInitialPlayback else { return }
+        hasHandledInitialPlayback = true
+        if !isController, let selected {
+            play(selected, showPlayer: false)
         }
     }
 
     func play(_ station: Station, showPlayer: Bool = true, reconnecting: Bool = false) {
+        hasHandledInitialPlayback = true
         if isController {
             guard !reconnecting else { return }
             controllerPlaybackRequested = true
@@ -216,6 +227,7 @@ final class RadioStore: ObservableObject {
     }
 
     func resume() {
+        hasHandledInitialPlayback = true
         resumeAfterInterruption = false
         guard let selected else { return }
         if isController {
@@ -249,6 +261,7 @@ final class RadioStore: ObservableObject {
     }
 
     func pause() {
+        hasHandledInitialPlayback = true
         if isController {
             controllerPlaybackRequested = false
             devicePairing.send(PairingCommand(type: "pause"))

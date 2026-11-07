@@ -3,8 +3,6 @@ import Foundation
 struct WidgetStationSnapshot: Codable, Equatable, Sendable {
     static let groupIdentifier = "group.ge.globeradio.app"
     static let kind = "RadiallaLastStation"
-    static let playbackURL = URL(string: "radialla://play-last")
-    static let pauseURL = URL(string: "radialla://pause-last")
     static let storageKey = "widgetLastStation.v1"
 
     let stationID: String

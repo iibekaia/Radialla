@@ -3,9 +3,14 @@ import Foundation
 extension RadioStore {
     func handleWidgetURL(_ url: URL) {
         guard url.scheme?.lowercased() == "radialla", ["play-last", "pause-last"].contains(url.host ?? ""),
-              url.path.isEmpty || url.path == "/",
-              let station = LastStationStore().load() else { return }
-        if url.host == "pause-last" {
+              url.path.isEmpty || url.path == "/" else { return }
+        setLastStationPlayback(url.host == "play-last")
+    }
+
+    func setLastStationPlayback(_ shouldPlay: Bool, stationID: String? = nil) {
+        guard let station = LastStationStore().load(),
+              stationID == nil || station.id == stationID else { return }
+        if !shouldPlay {
             if selected?.id == station.id { pause() }
             return
         }
